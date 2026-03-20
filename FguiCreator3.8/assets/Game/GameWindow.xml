@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1560">
+  <displayList>
+    <component id="n0_ytbf" name="stage" src="qphyd" fileName="empty.xml" pkg="mkwn34a7" xy="360,780">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </component>
+  </displayList>
+</component>

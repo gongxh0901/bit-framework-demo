@@ -1,0 +1,87 @@
+{
+    "name": "Player",
+    "alias": "玩家",
+    "group": "玩家",
+    "components": [
+        {
+            "name": "Position",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "Direction",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "DrawType",
+            "props": {
+                "shapeType": "TRIANGLE",
+                "size": 50,
+                "color": [
+                    54,
+                    194,
+                    0,
+                    255
+                ]
+            }
+        },
+        {
+            "name": "ShapeCircle",
+            "props": {
+                "radius": 50,
+                "tag": "HERO",
+                "offsetX": 0,
+                "offsetY": 0
+            }
+        },
+        {
+            "name": "TagHero",
+            "props": {}
+        },
+        {
+            "name": "BoundaryClamp",
+            "props": {}
+        },
+        {
+            "name": "PlayerInput",
+            "props": {
+                "dx": 0,
+                "dy": 0
+            }
+        },
+        {
+            "name": "Input",
+            "props": {
+                "dx": 0,
+                "dy": 0
+            }
+        },
+        {
+            "name": "Speed",
+            "props": {
+                "value": 220
+            }
+        },
+        {
+            "name": "Shooter",
+            "props": {
+                "cooldown": 0.3,
+                "elapsed": 5
+            }
+        },
+        {
+            "name": "ShootPattern",
+            "props": {
+                "type": "SCATTER",
+                "bulletCount": 3,
+                "spreadAngle": 20,
+                "burstInterval": 0.1
+            }
+        }
+    ]
+}

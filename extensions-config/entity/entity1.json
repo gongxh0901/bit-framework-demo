@@ -1,0 +1,13 @@
+{
+    "name": "entity1",
+    "alias": "技能球",
+    "group": "技能球",
+    "components": [
+        {
+            "name": "LifeTime",
+            "props": {
+                "duration": 1
+            }
+        }
+    ]
+}

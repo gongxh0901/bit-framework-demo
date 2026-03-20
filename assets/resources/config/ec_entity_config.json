@@ -1,0 +1,114 @@
+{
+    "Bullet": {
+        "Direction": {
+            "x": 0,
+            "y": 0
+        },
+        "DrawType": {
+            "color": [
+                255,
+                255,
+                255,
+                255
+            ],
+            "shapeType": 0,
+            "size": 5
+        },
+        "LifeTime": {
+            "duration": 5
+        },
+        "Position": {
+            "x": 0,
+            "y": 0
+        },
+        "ShapeCircle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "radius": 5,
+            "tag": 3
+        },
+        "Speed": {
+            "value": 800
+        },
+        "TagBullet": {}
+    },
+    "Enemy": {
+        "Direction": {
+            "x": 0,
+            "y": 0
+        },
+        "DrawType": {
+            "color": [
+                255,
+                133,
+                133,
+                255
+            ],
+            "shapeType": 2,
+            "size": 15
+        },
+        "Position": {
+            "x": 0,
+            "y": 0
+        },
+        "ShapeCircle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "radius": 15,
+            "tag": 2
+        },
+        "Speed": {
+            "value": 0
+        },
+        "TagEnemy": {}
+    },
+    "Player": {
+        "Direction": {
+            "x": 0,
+            "y": 0
+        },
+        "DrawType": {
+            "color": [
+                54,
+                194,
+                0,
+                255
+            ],
+            "shapeType": 1,
+            "size": 50
+        },
+        "Input": {
+            "dx": 0,
+            "dy": 0
+        },
+        "Position": {
+            "x": 0,
+            "y": 0
+        },
+        "ShapeCircle": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "radius": 50,
+            "tag": 1
+        },
+        "ShootPattern": {
+            "bulletCount": 3,
+            "burstInterval": 0.1,
+            "spreadAngle": 20,
+            "type": 1
+        },
+        "Shooter": {
+            "cooldown": 0.3,
+            "elapsed": 5
+        },
+        "Speed": {
+            "value": 220
+        },
+        "TagHero": {}
+    },
+    "entity1": {
+        "LifeTime": {
+            "duration": 1
+        }
+    }
+}

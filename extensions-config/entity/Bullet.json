@@ -1,0 +1,63 @@
+{
+    "name": "Bullet",
+    "alias": "",
+    "group": "子弹",
+    "components": [
+        {
+            "name": "Direction",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "Position",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "Speed",
+            "props": {
+                "value": 800
+            }
+        },
+        {
+            "name": "DrawType",
+            "props": {
+                "shapeType": "CIRCLE",
+                "size": 5,
+                "color": [
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            }
+        },
+        {
+            "name": "ShapeCircle",
+            "props": {
+                "radius": 5,
+                "tag": "BULLET",
+                "offsetX": 0,
+                "offsetY": 0
+            }
+        },
+        {
+            "name": "TagBullet",
+            "props": {}
+        },
+        {
+            "name": "Rebound",
+            "props": {}
+        },
+        {
+            "name": "LifeTime",
+            "props": {
+                "duration": 5
+            }
+        }
+    ]
+}

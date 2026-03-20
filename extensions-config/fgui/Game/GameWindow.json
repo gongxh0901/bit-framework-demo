@@ -1,0 +1,34 @@
+{
+    "props": {
+        "container": {
+            "name": "container",
+            "idPath": "n0_qphy",
+            "namePath": "container"
+        },
+        "btn_back": {
+            "name": "btn _back",
+            "idPath": "n1_cmn3",
+            "namePath": "btn _back"
+        },
+        "_stage": {
+            "name": "stage",
+            "idPath": "n0_ytbf",
+            "namePath": "stage"
+        }
+    },
+    "callbacks": {
+        "onBack": {
+            "name": "btn _back",
+            "idPath": "n1_cmn3",
+            "namePath": "btn _back"
+        },
+        "onCreateEntity": {
+            "name": "btn _add",
+            "idPath": "n2_y5yg",
+            "namePath": "btn _add"
+        }
+    },
+    "controls": {},
+    "transitions": {},
+    "__version__": "0.0.1"
+}

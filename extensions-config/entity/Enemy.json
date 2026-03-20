@@ -1,0 +1,57 @@
+{
+    "name": "Enemy",
+    "alias": "怪物",
+    "group": "怪物",
+    "components": [
+        {
+            "name": "Position",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "Direction",
+            "props": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "name": "Speed",
+            "props": {
+                "value": 0
+            }
+        },
+        {
+            "name": "DrawType",
+            "props": {
+                "shapeType": "SQUARE",
+                "size": 15,
+                "color": [
+                    255,
+                    133,
+                    133,
+                    255
+                ]
+            }
+        },
+        {
+            "name": "ShapeCircle",
+            "props": {
+                "radius": 15,
+                "tag": "ENEMY",
+                "offsetX": 0,
+                "offsetY": 0
+            }
+        },
+        {
+            "name": "TagEnemy",
+            "props": {}
+        },
+        {
+            "name": "Rebound",
+            "props": {}
+        }
+    ]
+}

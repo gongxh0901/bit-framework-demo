@@ -157,6 +157,11 @@ export default tseslint.config(
             'simple-import-sort/imports': 'warn',
             'simple-import-sort/exports': 'warn',
 
+            // ── 允许短路求值作为语句（如 condition && sideEffect()）──────────────
+            '@typescript-eslint/no-unused-expressions': ['warn', {
+                allowShortCircuit: true,
+            }],
+
             // ── 未使用变量（允许 _ 开头）─────────────────────────────────────────
             '@typescript-eslint/no-unused-vars': ['warn', {
                 argsIgnorePattern: '^_',

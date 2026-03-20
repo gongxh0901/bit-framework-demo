@@ -7,6 +7,7 @@ import { Graphics, Node } from "cc";
 
 import { ecs } from "../../../header";
 import { DrawType, EDrawShapeType } from "../../component/basics/DrawType";
+import { Position } from "../../component/basics/Position";
 import { Render } from "../../component/basics/Render";
 import { ECSHelper, EStageLayer } from "../../ECSHelper";
 
@@ -15,11 +16,11 @@ const { ecsystem } = ecs._ecsdecorator;
 @ecsystem("GraphicsRenderGenerate", { describe: "为 DrawType 实体创建 Graphics 绘制节点并添加 Render 组件" })
 export class GraphicsRenderGenerate extends ecs.System {
     protected onInit(): void {
-        this.matcher.allOf(DrawType).excludeOf(Render);
+        this.matcher.allOf(DrawType).optionalOf(Position).excludeOf(Render);
     }
 
     public update(_dt: number): void {
-        for (const [entity, drawType] of this.query.iterate1(DrawType)) {
+        for (const [entity, drawType, position] of this.query.iterate2(DrawType, Position)) {
             const node = new Node("RenderNode");
             const graphics = node.addComponent(Graphics);
             graphics.fillColor = drawType.color;
@@ -41,6 +42,9 @@ export class GraphicsRenderGenerate extends ecs.System {
                     break;
             }
             graphics.fill();
+            // 在加入场景前设置初始位置，避免节点先出现在屏幕中心（ECS 查询缓存导致 RenderSystem 本帧无法同步）
+            position && node.setPosition(position.x, position.y, 0);
+
             node.layer = 1 << 1;
             ECSHelper.getLayer(EStageLayer.ENTITY).addChild(node);
 

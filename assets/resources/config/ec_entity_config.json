@@ -77,6 +77,10 @@
             "shapeType": 1,
             "size": 50
         },
+        "FaceDirection": {
+            "x": 0,
+            "y": 1
+        },
         "Input": {
             "dx": 0,
             "dy": 0
@@ -90,6 +94,9 @@
             "offsetY": 0,
             "radius": 50,
             "tag": 1
+        },
+        "ShootCycle": {
+            "singleDuration": 3
         },
         "ShootPattern": {
             "bulletCount": 3,

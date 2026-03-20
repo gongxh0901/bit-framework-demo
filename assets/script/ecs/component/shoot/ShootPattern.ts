@@ -6,9 +6,20 @@
 import { Enum } from "cc";
 
 import { ecs } from "../../../header";
-import { EShootType } from "./Enums";
 
 const { ecsclass, ecsprop } = ecs._ecsdecorator;
+
+/** 射击模式 */
+export enum EShootType {
+    /** 单发 */
+    SINGLE = 0,
+    /** 散射 */
+    SCATTER = 1,
+    /** 连发 */
+    BURST = 2,
+    /** 三连发 */
+    TRIPLE = 3
+}
 
 @ecsclass("ShootPattern", { describe: "射击弹道配置组件" })
 export class ShootPattern extends ecs.Component {

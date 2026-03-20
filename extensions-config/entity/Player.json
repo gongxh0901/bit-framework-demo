@@ -82,6 +82,19 @@
                 "spreadAngle": 20,
                 "burstInterval": 0.1
             }
+        },
+        {
+            "name": "ShootCycle",
+            "props": {
+                "singleDuration": 3
+            }
+        },
+        {
+            "name": "FaceDirection",
+            "props": {
+                "x": 0,
+                "y": 1
+            }
         }
     ]
 }

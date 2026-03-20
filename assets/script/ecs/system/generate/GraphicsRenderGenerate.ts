@@ -6,8 +6,7 @@
 import { Graphics, Node } from "cc";
 
 import { ecs } from "../../../header";
-import { DrawType } from "../../component/basics/DrawType";
-import { EDrawShapeType } from "../../component/basics/Enums";
+import { DrawType, EDrawShapeType } from "../../component/basics/DrawType";
 import { Render } from "../../component/basics/Render";
 import { ECSHelper, EStageLayer } from "../../ECSHelper";
 

@@ -6,7 +6,16 @@
 import { Color, Enum } from "cc";
 
 import { ecs } from "../../../header";
-import { EDrawShapeType } from "./Enums";
+
+/** 绘制形状类型 */
+export enum EDrawShapeType {
+    /** 圆形 */
+    CIRCLE = 0,
+    /** 尖三角（等腰锐角，宽 = size * 0.6） */
+    TRIANGLE = 1,
+    /** 方形 */
+    SQUARE = 2
+}
 
 const { ecsclass, ecsprop } = ecs._ecsdecorator;
 

@@ -30,10 +30,10 @@ paths:
 - 系统只包含逻辑，禁止存储持久状态（单例数据用单例组件）
 - 装饰器解构：`const { ecsystem } = ecs._ecsdecorator`
 
-## 实体配置（只读参考）
+## 实体配置
 - 位置：`extensions-config/entity/<entityName>.json`
 - 配置描述实体包含哪些组件及默认属性值
-- 由 Cocos 插件管理，Claude 只读不写
+- 可直接修改，修改后需通过编辑器重新导出配置文件
 - 用途：了解已有实体的组件组合，帮助理解业务上下文
 
 ## 文件组织

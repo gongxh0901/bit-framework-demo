@@ -102,7 +102,7 @@
             "bulletCount": 3,
             "burstInterval": 0.1,
             "spreadAngle": 20,
-            "type": 1
+            "type": 0
         },
         "Shooter": {
             "cooldown": 0.3,

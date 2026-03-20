@@ -77,7 +77,7 @@
         {
             "name": "ShootPattern",
             "props": {
-                "type": "SCATTER",
+                "type": "SINGLE",
                 "bulletCount": 3,
                 "spreadAngle": 20,
                 "burstInterval": 0.1

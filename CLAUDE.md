@@ -44,7 +44,7 @@
 | `assets/script/header.ts` | 统一导出：ASSETS, CORE, ecs, FGUI, QT, UI |
 | `assets/script/ecs/` | ECS 组件和系统 |
 | `FguiCreator3.8/assets/` | FGUI 工程（按包分目录，含 XML 节点定义） |
-| `extensions-config/entity/` | 实体配置 JSON（只读） |
+| `extensions-config/entity/` | 实体配置 JSON（可直接修改，修改后需通过编辑器重新导出） |
 | `extensions-config/fgui/` | FGUI 插件配置（代码写完后生成，不可用于了解节点结构） |
 
 ## 查询 API（MCP 知识库）

@@ -3,14 +3,16 @@
  * @Date: 2026-03-18
  * @Description: ECS 小游戏窗口
  * - 打开时在 FGUI stage 组件内创建 ECS 舞台节点，初始化 ECS 世界和四叉树单例
- * - 触摸输入委托给 TouchInputManager 处理
- * - 关闭时清理触摸、销毁舞台节点和 ECS 世界
+ * - 输入委托给 InputManager 处理（支持触摸摇杆、键盘等多种输入源）
+ * - 关闭时清理输入、销毁舞台节点和 ECS 世界
  */
 
 import { Node } from "cc";
 
 import { ECSHelper } from "../../ecs/ECSHelper";
-import { TouchInputManager } from "../../ecs/TouchInputManager";
+import { InputManager } from "../../ecs/input/InputManager";
+import { KeyboardInputSource } from "../../ecs/input/KeyboardInputSource";
+import { TouchInputSource } from "../../ecs/input/TouchInputSource";
 import { FGUI, UI } from "../../header";
 
 const { uiclass, uiprop } = UI._uidecorator;
@@ -21,7 +23,7 @@ export class GameWindow extends UI.Window {
     private _stage: FGUI.GComponent;
 
     private _stageNode: Node;
-    private _touchManager: TouchInputManager;
+    private _inputManager: InputManager;
 
     protected onInit(): void {
         this.adapterType = UI.AdapterType.Full;
@@ -34,8 +36,8 @@ export class GameWindow extends UI.Window {
     }
 
     protected onClose(): void {
-        this._touchManager?.dispose();
-        this._touchManager = null;
+        this._inputManager?.dispose();
+        this._inputManager = null;
         this._stageNode?.destroy();
         this._stageNode = null;
         ECSHelper.destroy();
@@ -60,11 +62,14 @@ export class GameWindow extends UI.Window {
 
         // 通过配置创建玩家实体
         const { entity } = ECSHelper.world.createEntity("Player");
-        // 注册触摸输入
-        this._touchManager = new TouchInputManager(ECSHelper.world, entity);
+        // 注册输入源
+        this._inputManager = new InputManager(ECSHelper.world, entity);
+        this._inputManager.addSource(new TouchInputSource());
+        this._inputManager.addSource(new KeyboardInputSource());
     }
 
     protected onUpdate(dt?: number): void {
+        this._inputManager?.update();
         ECSHelper.world.update(dt);
     }
 }

@@ -4,6 +4,7 @@
  * @Description: 圆形碰撞体配置组件，由 ShapeGenerate 系统处理后删除
  */
 import { Enum } from "cc";
+
 import { ecs } from "../../../header";
 import { EEntityType } from "./EntityType";
 

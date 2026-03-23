@@ -1,33 +1,45 @@
 /**
  * @Author: Gongxh
- * @Date: 2026-03-18
- * @Description: 触摸输入管理器
- * 注册全局触摸事件，将屏幕滑动转换为摇杆方向写入 Input 组件
+ * @Date: 2026-03-23
+ * @Description: 触摸摇杆输入源
+ * 将屏幕滑动转换为摇杆方向输出
  */
 
 import { EventTouch, Node, NodeEventType, UITransform } from "cc";
 
-import { CORE, ecs } from "../header";
-import { Input } from "./component/basics/Input";
-import { ECSHelper, EStageLayer } from "./ECSHelper";
+import { CORE } from "../../header";
+import { ECSHelper, EStageLayer } from "../ECSHelper";
+import { IInputSource } from "./IInputSource";
 
 const DEAD_ZONE = 8;
 const MAX_DIST = 80;
 
-export class TouchInputManager {
-    private _world: ecs.World;
-    private _playerEntity: ecs.Entity;
-    private _touchNode: Node;
+export class TouchInputSource implements IInputSource {
+    public readonly priority: number = 10;
 
+    private _dx: number = 0;
+    private _dy: number = 0;
+    private _isActive: boolean = false;
+
+    private _touchNode: Node;
     private _joystickOriginX: number = 0;
     private _joystickOriginY: number = 0;
-    private _joystickActive: boolean = false;
     private _joystickTouchId: number = -1;
+    private _isEnabled: boolean = true;
 
-    constructor(world: ecs.World, playerEntity: ecs.Entity) {
-        this._world = world;
-        this._playerEntity = playerEntity;
+    public get isActive(): boolean {
+        return this._isActive;
+    }
 
+    public get dx(): number {
+        return this._dx;
+    }
+
+    public get dy(): number {
+        return this._dy;
+    }
+
+    constructor() {
         this._touchNode = new Node("TouchNode");
         this._touchNode.addComponent(UITransform).setContentSize(CORE.Screen.ScreenWidth, CORE.Screen.ScreenHeight);
         ECSHelper.getLayer(EStageLayer.INPUT).addChild(this._touchNode);
@@ -38,29 +50,40 @@ export class TouchInputManager {
         this._touchNode.on(NodeEventType.TOUCH_CANCEL, this.onTouchEnd, this);
     }
 
+    public enable(): void {
+        this._isEnabled = true;
+    }
+
+    public disable(): void {
+        this._isEnabled = false;
+        this.resetState();
+    }
+
     public dispose(): void {
+        if (!this._touchNode) {
+            return;
+        }
         this._touchNode.off(NodeEventType.TOUCH_START, this.onTouchStart, this);
         this._touchNode.off(NodeEventType.TOUCH_MOVE, this.onTouchMove, this);
         this._touchNode.off(NodeEventType.TOUCH_END, this.onTouchEnd, this);
         this._touchNode.off(NodeEventType.TOUCH_CANCEL, this.onTouchEnd, this);
         this._touchNode.destroy();
         this._touchNode = null;
-        this._world = null;
     }
 
     private onTouchStart(event: EventTouch): void {
-        if (this._joystickActive) {
+        if (!this._isEnabled || this._isActive) {
             return;
         }
         const loc = event.getLocation();
         this._joystickTouchId = event.touch.getID();
         this._joystickOriginX = loc.x;
         this._joystickOriginY = loc.y;
-        this._joystickActive = true;
+        this._isActive = true;
     }
 
     private onTouchMove(event: EventTouch): void {
-        if (!this._joystickActive || event.touch.getID() !== this._joystickTouchId) {
+        if (!this._isEnabled || !this._isActive || event.touch.getID() !== this._joystickTouchId) {
             return;
         }
         const loc = event.getLocation();
@@ -76,26 +99,22 @@ export class TouchInputManager {
             dx = (dx / dist) * (clampedDist / MAX_DIST);
             dy = (dy / dist) * (clampedDist / MAX_DIST);
         }
-        this.applyInput(dx, dy);
+
+        this._dx = dx;
+        this._dy = dy;
     }
 
     private onTouchEnd(event: EventTouch): void {
         if (event.touch.getID() !== this._joystickTouchId) {
             return;
         }
-        this._joystickActive = false;
-        this._joystickTouchId = -1;
-        this.applyInput(0, 0);
+        this.resetState();
     }
 
-    private applyInput(dx: number, dy: number): void {
-        if (!this._world) {
-            return;
-        }
-        const playerInput = this._world.getComponent(this._playerEntity, Input);
-        if (playerInput) {
-            playerInput.dx = dx;
-            playerInput.dy = dy;
-        }
+    private resetState(): void {
+        this._isActive = false;
+        this._joystickTouchId = -1;
+        this._dx = 0;
+        this._dy = 0;
     }
 }

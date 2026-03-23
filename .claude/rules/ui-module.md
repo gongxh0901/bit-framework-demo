@@ -1,6 +1,6 @@
 ---
 paths:
-  - "assets/script/**/*.ts"
+  - "assets/script/UI/**/*.ts"
 ---
 
 # bit-ui 窗口模块

@@ -1,6 +1,6 @@
 ---
 paths:
-  - "assets/script/**/*.ts"
+  - "assets/script/net/**/*.ts"
 ---
 
 # bit-net 网络模块

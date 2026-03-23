@@ -1,6 +1,6 @@
 ---
 paths:
-  - "assets/script/**/*.ts"
+  - "assets/script/UI/**/*.ts"
 ---
 
 # FGUI UI 工作流

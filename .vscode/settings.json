@@ -1,0 +1,30 @@
+{
+    // ESLint 编辑器集成
+    "eslint.enable": true,
+    "eslint.validate": ["javascript", "typescript"],
+    "eslint.run": "onSave",
+    "eslint.format.enable": true,
+    "editor.formatOnSave": false,
+    // 禁用 TS 内置格式化器，改用 ESLint 自动修复
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "always"
+        }
+    },
+    "files.exclude": {
+        "**/.creator/": true,
+        "**/.gitignore": true,
+        "**/*.meta": true,
+        "**/bit-templates/": true,
+        "**/build/": true,
+        "**/library/": true,
+        "**/local/": true,
+        "**/native": true,
+        "**/node_modules/": true,
+        "**/profiles/": true,
+        "**/temp": true
+    }
+}

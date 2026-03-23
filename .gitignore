@@ -20,6 +20,7 @@ package-lock.json
 # IDE
 #//////////////////////////
 .vscode/
+!.vscode/settings.json
 .idea/
 .creator/
 

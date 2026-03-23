@@ -14,6 +14,7 @@ import { RenderSystem } from "./system/basics/RenderSystem";
 import { ShapeUpdateSystem } from "./system/basics/ShapeUpdateSystem";
 import { ShooterSystem } from "./system/basics/ShooterSystem";
 import { GraphicsRenderGenerate } from "./system/generate/GraphicsRenderGenerate";
+import { MonsterFactorySystem } from "./system/generate/MonsterFactorySystem";
 import { ShapeGenerateSystem } from "./system/generate/ShapeGenerateSystem";
 
 /** 舞台分层枚举，索引顺序即渲染顺序（越大越靠上） */
@@ -89,15 +90,26 @@ export class ECSHelper {
 
         const world = new ecs.World("world", 1 << 13);
 
-        world.addSystem(new InputSystem())
+        // 基础系统组
+        const basicGroup = new ecs.SystemGroup("BasicSystemGroup", 1);
+        basicGroup.addSystem(new InputSystem())
             .addSystem(new MoveSystem())
             .addSystem(new FacingSystem())
             .addSystem(new ShooterSystem())
-            .addSystem(new LifeTimeSystem())
+            .addSystem(new LifeTimeSystem());
+
+        // 生成系统组
+        const generateGroup = new ecs.SystemGroup("GenerateSystemGroup", 1);
+        generateGroup.addSystem(new MonsterFactorySystem())
             .addSystem(new ShapeGenerateSystem())
             .addSystem(new GraphicsRenderGenerate())
-            .addSystem(new ShapeUpdateSystem())
-            .addSystem(new RenderSystem());
+            .addSystem(new ShapeUpdateSystem());
+
+        // 渲染系统组 这个放到最后
+        const renderGroup = new ecs.SystemGroup("RenderSystemGroup", 1);
+        renderGroup.addSystem(new RenderSystem());
+
+        world.addSystem(basicGroup).addSystem(generateGroup).addSystem(renderGroup);
 
         world.initialize();
         this._world = world;

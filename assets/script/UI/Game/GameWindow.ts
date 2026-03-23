@@ -64,7 +64,7 @@ export class GameWindow extends UI.Window {
         this._touchManager = new TouchInputManager(ECSHelper.world, entity);
     }
 
-    protected onUpdate(_dt: number): void {
-        ECSHelper.world.update(_dt);
+    protected onUpdate(dt?: number): void {
+        ECSHelper.world.update(dt);
     }
 }

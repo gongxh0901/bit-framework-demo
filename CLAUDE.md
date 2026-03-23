@@ -1,7 +1,9 @@
 # 项目规范
 
-## 引擎版本
-- Cocos Creator 3.8.8，严格使用该版本 API
+## 项目概述
+基于 Cocos Creator 3.8.8 的 2D 射击游戏，使用 [bit-framework](https://github.com/gongxh0901/bit-framework) 框架开发。
+核心架构：ECS（实体组件系统）处理游戏战斗逻辑 + FGUI（FairyGUI）构建 UI 界面。
+- 严格使用 Cocos Creator 3.8.8 API
 - 禁止使用废弃 API：cc.loader、cc.Class、cc.director.getScheduler 旧写法、Action 动作系统
 
 ## 框架模块

@@ -3,7 +3,7 @@ name: create-system
 description: 创建符合项目规范的 ECS 系统
 user-invocable: true
 argument-hint: [系统名] [描述] [分类目录]
-allowed-tools: Read(*), Write(*), Glob(*), Grep(*)
+allowed-tools: Read(*), Write(*), Edit(*), Glob(*), Grep(*)
 ---
 
 # 创建 ECS 系统
@@ -58,10 +58,11 @@ export class 系统名 extends ecs.System {
 ### 5. 保存文件
 保存到 `assets/script/ecs/system/{分类目录}/{系统名}.ts`
 
-### 6. 提醒注册
-提醒用户需要在 `assets/script/ecs/ECSHelper.ts` 的 `register()` 方法中：
-1. import 新系统
-2. 将系统添加到合适的 SystemGroup
+### 6. 自动注册系统
+读取 `assets/script/ecs/ECSHelper.ts`，自动完成注册：
+1. 在文件顶部 import 区域添加新系统的 import 语句
+2. 在 `register()` 方法的 `addSystem` 链中插入 `new 系统名()`
+3. 询问用户希望将系统插入到哪个位置（在哪个系统之前/之后），如果用户不指定则追加到链末尾（`world.initialize()` 之前）
 
 ### 注意事项
 - `iterate` 方法的组件参数顺序必须与 `allOf` + `anyOf` + `optionalOf` 的声明顺序一致

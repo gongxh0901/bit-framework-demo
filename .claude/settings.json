@@ -38,15 +38,6 @@
             "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/tsc-check.sh"
           }
         ]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/console-log-warn.sh"
-          }
-        ]
       }
     ],
     "Stop": [

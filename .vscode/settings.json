@@ -23,7 +23,7 @@
         "**/library/": true,
         "**/local/": true,
         "**/native": true,
-        "**/node_modules/": true,
+        "**/node_modules/": false,
         "**/profiles/": true,
         "**/temp": true
     }
